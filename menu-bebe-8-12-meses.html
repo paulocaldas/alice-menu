@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu do Bebé · 8 a 12 Meses</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #FFF8F0 0%, #FFF0F5 50%, #F0FFF4 100%);
+      font-family: 'Lexend', sans-serif;
+      color: #2C2C2C;
+    }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(160deg, #D8EEE2 0%, #E4F2E8 40%, #F5DFC8 100%);
+      padding: 22px 24px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute; top: -16px; left: -16px;
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+    }
+    .header::after {
+      content: '';
+      position: absolute; bottom: -20px; right: -10px;
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+    }
+    .header-emoji { font-size: 36px; margin-bottom: 6px; }
+    .header h1 {
+      color: #5A7A50; font-size: 22px; font-weight: 700;
+      margin-bottom: 3px;
+      letter-spacing: -0.2px;
+    }
+    .header .sub1 {
+      color: #7A9E70; font-size: 12px; font-weight: 500;
+      margin-bottom: 2px;
+    }
+    .header .sub2 {
+      color: #9A9080; font-size: 12px; font-weight: 400;
+    }
+
+    /* TABS */
+    .tabs {
+      display: flex; gap: 8px;
+      padding: 28px 20px 16px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+
+    .tab {
+      flex: 0 0 auto;
+      padding: 9px 16px;
+      border-radius: 50px;
+      border: 2px solid #E0E0E0;
+      background: white;
+      color: #555;
+      font-family: 'Lexend', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    /* CONTENT */
+    .content { padding: 0 20px 32px; }
+    .subtitle {
+      font-size: 12px; color: #999; margin-bottom: 16px; font-weight: 400;
+    }
+
+    .cards { display: flex; flex-direction: column; gap: 12px; }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 14px 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.22s ease;
+    }
+    .card-header { display: flex; align-items: center; gap: 12px; }
+    .card-icon {
+      width: 46px; height: 46px; border-radius: 13px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; flex-shrink: 0;
+    }
+    .card-body { flex: 1; min-width: 0; }
+    .card-title { font-weight: 600; font-size: 14px; line-height: 1.3; margin-bottom: 6px; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .tag {
+      font-size: 10px; padding: 2px 7px; border-radius: 20px;
+      font-weight: 600; letter-spacing: 0.2px; color: #555;
+    }
+    .card-arrow {
+      font-size: 22px; flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .card-desc {
+      display: none;
+      margin-top: 12px; padding-top: 12px;
+      font-size: 13px; color: #444; line-height: 1.7; font-weight: 400;
+    }
+
+    /* DICAS (secção tab) */
+    .dicas-content { padding: 0 20px 32px; }
+    .dica-card {
+      background: white;
+      border-radius: 16px;
+      padding: 16px 18px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      margin-bottom: 12px;
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+    .dica-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .dica-body {}
+    .dica-titulo { font-weight: 700; font-size: 14px; margin-bottom: 5px; color: #333; }
+    .dica-texto { font-size: 13px; color: #555; line-height: 1.65; font-weight: 400; }
+
+    /* AVISO (fundo) */
+    .aviso {
+      margin: 4px 20px 32px;
+      background: #FFFBF0;
+      border-radius: 14px;
+      padding: 14px 16px;
+      display: flex; gap: 10px; align-items: flex-start;
+      border: 1px solid #FFE0B2;
+    }
+    .aviso-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .aviso p { font-size: 12px; color: #795548; line-height: 1.6; font-weight: 400; }
+    .aviso strong { font-weight: 600; }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      padding: 16px 20px 32px;
+      font-size: 11px;
+      color: #bbb;
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-emoji">👧🍼</div>
+  <h1>Menu da Alice</h1>
+  <p class="sub1">Receitas Simples &amp; Saudáveis</p>
+  <p class="sub2">Meses: 8 – 12</p>
+</div>
+
+<div class="tabs" id="tabs"></div>
+
+<div id="main-content"></div>
+
+<div class="aviso">
+  <span class="aviso-icon">⚠️</span>
+  <p><strong>Nota importante:</strong> Este menu é apenas informativo. Consulte sempre o seu pediatra ou nutricionista. Sem sal nem açúcar adicionados. Introduza um alimento novo de cada vez, com 48–72h de intervalo.</p>
+</div>
+
+<div class="footer">Menu criado com base em fontes de nutrição pediátrica portuguesa.</div>
+
+<script>
+  const tagColors = {
+    "Fruta": "#E8F5E9", "Cereais": "#FFF3E0", "Laticínios": "#E3F2FD",
+    "Legumes": "#F3E5F5", "Proteína": "#FCE4EC", "Leguminosas": "#E0F2F1",
+    "Tubérculos": "#FFF8E1", "Verduras": "#E8F5E9", "Ferro": "#FFEBEE",
+    "BLW": "#F3E5F5", "Digestão": "#E0F7FA", "Vitamina A": "#FFF3E0",
+    "Vitamina C": "#FFF9C4", "Cálcio": "#E3F2FD", "Azeite": "#F9FBE7",
+    "Segurança": "#FFEBEE", "Gorduras saudáveis": "#E8F5E9",
+    "Potássio": "#FFF3E0", "Proteína vegetal": "#E0F2F1", "Ómega-3": "#E3F2FD",
+    "Antioxidantes": "#FCE4EC", "Fibra": "#E8F5E9",
+  };
+
+  const dicas = [
+    { icon: "🚫", iconBg: "#FFEBEE", titulo: "O que evitar", texto: "Sal, açúcar, mel, leite de vaca como bebida, alimentos processados, fritos, frutos secos inteiros, uvas inteiras e peixe com alto teor de mercúrio (espadarte, tubarão, peixe-espada)." },
+    { icon: "✅", iconBg: "#E8F5E9", titulo: "Textura adequada por idade", texto: "Dos 8 aos 10 meses: amassado com garfo, textura granulosa. Dos 10 aos 12 meses: pedaços macios que se desfazem facilmente na boca. Incentive o bebé a agarrar os alimentos com as mãos." },
+    { icon: "💧", iconBg: "#E3F2FD", titulo: "Hidratação", texto: "Ofereça água entre refeições, em copo ou chávena. Cerca de 800ml/dia incluindo a água do leite, das sopas e da fruta. Nunca sumos, mesmo naturais, antes dos 12 meses." },
+    { icon: "🔄", iconBg: "#FFF3E0", titulo: "Variedade e rotatividade", texto: "Varie as proteínas (frango, peixe, leguminosas), os cereais (arroz, massa, quinoa, aveia) e os legumes ao longo da semana para garantir equilíbrio nutricional e exposição a novos sabores." },
+    { icon: "👀", iconBg: "#F3E5F5", titulo: "Supervisão e segurança", texto: "Mantenha sempre o bebé sob supervisão durante as refeições. Sente-o numa posição estável e ereta. Corte sempre os alimentos redondos (como uvas) em quartos no sentido longitudinal." },
+    { icon: "🫙", iconBg: "#E8F5E9", titulo: "Conservação e preparação", texto: "Prepare as refeições em casa sempre que possível. Congele porções extras em recipientes de vidro ou silicone. Não aqueça em plástico. Descongele no frigorífico e não volte a congelar." },
+    { icon: "🍼", iconBg: "#FFF8E1", titulo: "Leite materno ou fórmula", texto: "O leite materno (ou fórmula) continua a ser a base da alimentação até aos 12 meses. As refeições sólidas complementam, mas não substituem o leite nesta fase. Ofereça o leite antes dos sólidos se o bebé tiver muita fome." },
+    { icon: "🌱", iconBg: "#E0F2F1", titulo: "Alergias alimentares", texto: "Introduza alimentos potencialmente alergénicos (ovo, peixe, amendoim, glúten) um de cada vez e com intervalo de 2-3 dias. Observe reações como erupções cutâneas, vómitos ou dificuldade respiratória." },
+  ];
+
+  const sections = [
+    {
+      key: "pa",
+      label: "🌅 Pequeno-Almoço",
+      accent: "#F4845F",
+      iconBg: "#FFF3E0",
+      lightBg: "#FFF8F0",
+      borderDash: "#F4845F50",
+      items: [
+        { e: "🍌", t: "Papa de Aveia com Banana", tags: ["Cereais","Fruta","Fibra"], d: "Aveia fina cozida em água ou leite materno, amassada com banana madura. Rica em fibra e energia de libertação lenta. Ideal para começar o dia." },
+        { e: "🍐", t: "Iogurte Natural com Pera Cozida", tags: ["Laticínios","Fruta"], d: "Iogurte natural sem açúcar com puré de pera cozida. Ótimo para a flora intestinal e muito suave para o aparelho digestivo do bebé." },
+        { e: "🍎", t: "Papa de Arroz com Maçã Ralada", tags: ["Cereais","Fruta"], d: "Papa de arroz simples com maçã ralada na hora. Suave, fácil de digerir e muito apreciada pelos bebés pelo sabor adocicado natural." },
+        { e: "🎃", t: "Puré de Abóbora com Canela", tags: ["Legumes","Vitamina A"], d: "Abóbora cozida e amassada com uma pitada de canela. Rico em vitamina A e com um sabor adocicado natural que os bebés adoram." },
+        { e: "🥭", t: "Papa de Milho com Manga", tags: ["Cereais","Fruta","Vitamina C"], d: "Farinha de milho cozida com pedaços suaves de manga. Tropical, nutritiva e com bom teor de vitamina C. Óptima opção no verão." },
+        { e: "🥚", t: "Ovo Mexido Suave com Pão Integral", tags: ["Proteína","Cereais"], d: "Ovo mexido sem sal com um pedacinho de pão integral amolecido. Ótima fonte de proteína e gorduras saudáveis. (a partir dos 9–10 meses)" },
+        { e: "🫐", t: "Iogurte com Ameixa e Aveia", tags: ["Laticínios","Fruta","Digestão"], d: "Iogurte natural misturado com ameixa cozida e amassada e flocos de aveia finos. Excelente para a digestão e para regular o intestino." },
+        { e: "🍠", t: "Papa de Batata-Doce com Canela", tags: ["Tubérculos","Vitamina A"], d: "Batata-doce cozida e amassada com uma pitada de canela. Naturalmente doce, rica em vitamina A e muito cremosa. Uma alternativa à abóbora." },
+        { e: "🥑", t: "Abacate Amassado com Pão Macio", tags: ["Gorduras saudáveis","Cereais"], d: "Abacate maduro amassado sobre uma pequena fatia de pão macio sem sal. Rico em gorduras saudáveis essenciais para o desenvolvimento cerebral." },
+        { e: "🍇", t: "Papa de Aveia com Mirtilos", tags: ["Cereais","Fruta","Antioxidantes"], d: "Aveia fina cozida com mirtilos esmagados. Rica em antioxidantes e fibra. Os mirtilos dão uma cor linda e um sabor suave e levemente ácido." },
+        { e: "🧇", t: "Panquequinhas de Banana e Ovo", tags: ["Proteína","Fruta","Cereais"], d: "Banana amassada misturada com ovo batido, cozinhadas num fio de azeite. Sem farinha nem açúcar. Ótimas para o bebé comer com as mãos. (a partir dos 9 meses)" },
+      ]
+    },
+    {
+      key: "aj",
+      label: "🍲 Almoços & Jantares",
+      accent: "#4CAF82",
+      iconBg: "#E8F5E9",
+      lightBg: "#F1FAF5",
+      borderDash: "#4CAF8250",
+      items: [
+        { e: "🍗", t: "Sopa de Frango com Legumes", tags: ["Proteína","Legumes","Tubérculos"], d: "Frango cozido e desfiado com cenoura, curgete e batata-doce. Amassado grosseiramente para estimular a mastigação. Uma das refeições mais completas e equilibradas." },
+        { e: "🐟", t: "Arroz com Peixe Branco e Cenoura", tags: ["Proteína","Cereais","Legumes"], d: "Pescada ou linguado cozido, desfiado, com arroz bem cozido e cenoura amassada. Simples, nutritivo, rico em proteína de qualidade e muito fácil de preparar." },
+        { e: "🫛", t: "Puré de Lentilhas com Espinafres", tags: ["Leguminosas","Ferro","Verduras"], d: "Lentilhas vermelhas cozidas com folhas de espinafre e um fio de azeite. Muito rico em ferro e proteína vegetal. Ideal para bebés que não comem carne." },
+        { e: "🍝", t: "Massa com Atum e Tomate", tags: ["Cereais","Proteína","Legumes"], d: "Massa de pequena dimensão bem cozida com atum em água (sem sal) e tomate fresco sem casca nem sementes. (a partir dos 9 meses)" },
+        { e: "🥣", t: "Sopa de Abóbora com Grão-de-Bico", tags: ["Leguminosas","Legumes","Azeite"], d: "Abóbora e grão-de-bico cozidos e amassados com um fio de azeite. Cremosa, saciante e com muito sabor. O grão-de-bico deve ser bem amassado." },
+        { e: "🍠", t: "Batata-Doce com Frango Desfiado", tags: ["Proteína","Tubérculos"], d: "Batata-doce cozida amassada com frango desfiado e cozinhado sem sal. O doce natural da batata combina muito bem com a proteína do frango." },
+        { e: "🥗", t: "Caldo de Legumes com Quinoa", tags: ["Cereais","Proteína vegetal"], d: "Quinoa bem cozida em caldo de legumes naturais com ervilhas e cenoura. Rica em proteína completa — contém todos os aminoácidos essenciais." },
+        { e: "🫘", t: "Feijão-Frade com Arroz e Abóbora", tags: ["Leguminosas","Cereais","Legumes"], d: "Feijão-frade cozido com arroz e abóbora amassados. Combinação equilibrada, completa e muito portuguesa. Rico em fibra e proteína vegetal." },
+        { e: "🥬", t: "Sopa de Curgete, Alho-Francês e Peru", tags: ["Proteína","Legumes","Verduras"], d: "Curgete e alho-francês cozidos com peru desfiado. Suave, rica em nutrientes e de sabor delicado. O alho-francês é muito digerível e aromático." },
+        { e: "🐠", t: "Bacalhau Desfiado com Batata e Cenoura", tags: ["Proteína","Tubérculos","Legumes"], d: "Bacalhau demolhado, cozido e muito bem desfiado com batata e cenoura amassadas. Clássico português adaptado ao bebé. Certifique-se que não tem espinhas." },
+        { e: "🐡", t: "Salmão com Arroz e Brócolos", tags: ["Proteína","Ómega-3","Cereais","Verduras"], d: "Salmão cozido e desfiado com arroz bem cozido e brócolos amassados. O salmão é uma das melhores fontes de ómega-3 para o desenvolvimento cerebral." },
+        { e: "🫙", t: "Sopa de Ervilhas com Frango e Batata", tags: ["Proteína","Leguminosas","Tubérculos"], d: "Ervilhas, frango desfiado e batata cozidos e amassados. As ervilhas são ricas em proteína vegetal, fibra e vitaminas do grupo B." },
+        { e: "🥦", t: "Puré de Brócolos, Batata e Ovo Cozido", tags: ["Verduras","Tubérculos","Proteína"], d: "Brócolos e batata cozidos e amassados com ovo cozido esmagado. Muito rico em ferro, cálcio e vitamina C. (a partir dos 9 meses)" },
+        { e: "🌽", t: "Polenta com Legumes e Frango", tags: ["Cereais","Proteína","Legumes"], d: "Farinha de milho cozida em caldo de legumes, servida com frango desfiado e cenoura amassada. Cremosa e muito saciante." },
+        { e: "🍲", t: "Sopa de Feijão Encarnado com Espinafres", tags: ["Leguminosas","Ferro","Verduras"], d: "Feijão encarnado cozido com espinafres e um fio de azeite. Muito rico em ferro e fibra. O azeite ajuda na absorção das vitaminas lipossolúveis." },
+        { e: "🐓", t: "Peru com Massa e Abóbora", tags: ["Proteína","Cereais","Legumes"], d: "Peru desfiado com massa de pequena dimensão bem cozida e abóbora amassada. Mais suave que o frango, o peru é muito digerível e rico em proteína." },
+      ]
+    },
+    {
+      key: "sn",
+      label: "🍓 Snacks & Lanches",
+      accent: "#E57373",
+      iconBg: "#FCE4EC",
+      lightBg: "#FFF0F3",
+      borderDash: "#E5737350",
+      items: [
+        { e: "🍌", t: "Banana Amassada", tags: ["Fruta","Potássio"], d: "Banana madura ligeiramente amassada ou em pedaços suaves. Fácil de agarrar, cheia de potássio e energia. Uma das frutas mais práticas e apreciadas." },
+        { e: "🍑", t: "Puré de Pêssego ou Nectarina", tags: ["Fruta","Vitamina C"], d: "Pêssego maduro sem pele amassado ou cortado em pedaços muito suaves. Doce natural, rico em vitamina C e muito apreciado pelos bebés." },
+        { e: "🍓", t: "Iogurte Natural com Frutos Vermelhos", tags: ["Laticínios","Fruta","Antioxidantes"], d: "Iogurte natural sem açúcar com morangos ou mirtilos esmagados. Colorido, nutritivo, fácil de preparar e excelente fonte de cálcio e antioxidantes." },
+        { e: "🥒", t: "Palitos de Pepino Fresco", tags: ["Legumes","BLW"], d: "Pepino pelado e cortado em palitos grossos para o bebé segurar e morder. Hidratante, refrescante e ótimo para estimular a dentição." },
+        { e: "🥞", t: "Panquequinhas de Aveia e Banana", tags: ["Cereais","Fruta","Proteína"], d: "Aveia moída misturada com banana amassada e um ovo. Cozinhadas num fio de azeite, sem açúcar. Fáceis de agarrar e ricas em fibra e proteína." },
+        { e: "🥕", t: "Palitos de Cenoura Cozida", tags: ["Legumes","BLW","Vitamina A"], d: "Cenoura cozida até ficar muito mole, cortada em palitos grossos. Fácil de agarrar, rica em betacaroteno (vitamina A) e levemente doce." },
+        { e: "🍒", t: "Ameixa Cozida Amassada", tags: ["Fruta","Digestão","Fibra"], d: "Ameixa ligeiramente cozida e amassada. Excelente para regular o intestino e com sabor agridoce natural que os bebés apreciam." },
+        { e: "🧀", t: "Queijo Fresco em Pedacinhos", tags: ["Laticínios","Proteína","Cálcio"], d: "Queijo fresco de baixo teor de sal cortado em cubinhos pequenos e macios. Ótima fonte de cálcio e proteína. (a partir dos 10–12 meses)" },
+        { e: "🥑", t: "Puré de Abacate", tags: ["Fruta","Gorduras saudáveis"], d: "Abacate maduro amassado com umas gotas de limão. Rico em gorduras saudáveis essenciais para o desenvolvimento cerebral, cremoso e muito nutritivo." },
+        { e: "🍇", t: "Uvas Cortadas em Quartos", tags: ["Fruta","Segurança"], d: "Uvas maduras sem sementes cortadas em quartos no sentido longitudinal. Nunca oferecer inteiras — risco sério de engasgamento. Refrescantes e ricas em antioxidantes." },
+        { e: "🍠", t: "Pedaços de Batata-Doce Cozida", tags: ["Tubérculos","Vitamina A","BLW"], d: "Batata-doce cozida em pedaços macios, fácil de agarrar com as mãos. Doce, nutritiva e rica em vitamina A. Ótima opção de lanche sólido." },
+        { e: "🥝", t: "Kiwi em Pedaços Suaves", tags: ["Fruta","Vitamina C","Fibra"], d: "Kiwi maduro descascado e cortado em pedaços pequenos. Uma das frutas com maior teor de vitamina C. Introduzir com atenção a possíveis reações. (a partir dos 10 meses)" },
+      ]
+    },
+    {
+      key: "dicas",
+      label: "💡 Dicas",
+      accent: "#7986CB",
+      iconBg: "#E8EAF6",
+      lightBg: "#F0F1FF",
+      isDicas: true,
+    }
+  ];
+
+  let activeSection = 0;
+  let expandedCard = null;
+
+  function renderTabs() {
+    const tabsEl = document.getElementById('tabs');
+    tabsEl.innerHTML = '';
+    sections.forEach((s, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'tab';
+      btn.textContent = s.label;
+      if (i === activeSection) {
+        btn.style.borderColor = s.accent;
+        btn.style.background = s.accent;
+        btn.style.color = 'white';
+        btn.style.fontWeight = '700';
+        btn.style.boxShadow = `0 4px 12px ${s.accent}40`;
+      }
+      btn.addEventListener('click', () => {
+        activeSection = i;
+        expandedCard = null;
+        renderTabs();
+        renderContent();
+      });
+      tabsEl.appendChild(btn);
+    });
+  }
+
+  function renderContent() {
+    const s = sections[activeSection];
+    const main = document.getElementById('main-content');
+
+    if (s.isDicas) {
+      let html = '<div class="dicas-content">';
+      dicas.forEach(d => {
+        html += `
+          <div class="dica-card">
+            <div class="dica-icon" style="background:${d.iconBg}">${d.icon}</div>
+            <div class="dica-body">
+              <div class="dica-titulo">${d.titulo}</div>
+              <div class="dica-texto">${d.texto}</div>
+            </div>
+          </div>`;
+      });
+      html += '</div>';
+      main.innerHTML = html;
+      return;
+    }
+
+    let html = `<div class="content">
+      <p class="subtitle">${s.items.length} sugestões · Toque numa refeição para ver detalhes</p>
+      <div class="cards" id="cards">`;
+
+    s.items.forEach((item, i) => {
+      const isOpen = expandedCard === i;
+      const tags = item.tags.map(tag =>
+        `<span class="tag" style="background:${tagColors[tag] || '#F5F5F5'}">${tag}</span>`
+      ).join('');
+      html += `
+        <div class="card" data-idx="${i}"
+          style="border:2px solid ${isOpen ? s.accent : 'transparent'};background:${isOpen ? s.lightBg : 'white'};${isOpen ? `box-shadow:0 6px 24px ${s.accent}25` : ''}">
+          <div class="card-header">
+            <div class="card-icon" style="background:${s.iconBg}">${item.e}</div>
+            <div class="card-body">
+              <div class="card-title">${item.t}</div>
+              <div class="card-tags">${tags}</div>
+            </div>
+            <div class="card-arrow" style="color:${s.accent};transform:${isOpen ? 'rotate(90deg)' : 'none'}">›</div>
+          </div>
+          <div class="card-desc" style="display:${isOpen ? 'block' : 'none'};border-top:1px dashed ${s.borderDash}">
+            ${item.d}
+          </div>
+        </div>`;
+    });
+
+    html += '</div></div>';
+    main.innerHTML = html;
+
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        const idx = parseInt(card.dataset.idx);
+        expandedCard = expandedCard === idx ? null : idx;
+        renderContent();
+      });
+    });
+  }
+
+  renderTabs();
+  renderContent();
+</script>
+</body>
+</html>
