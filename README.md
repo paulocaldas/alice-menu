@@ -1,2 +1,2 @@
 # alice-menu
-sugestões de receitas faceis e saudaveis para bebés
+app com sugestões de receitas faceis e saudaveis para bebés
